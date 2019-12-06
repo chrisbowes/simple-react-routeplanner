@@ -1,25 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Styled from 'styled-components';
+import WaypointList from './components/waypoint-list/waypoint-list.component';
+import LeafletMap from './components/leaflet-map/leaflet-map.component';
+import { StoreProvider } from './store/app.store';
 
+const AppWrapper = Styled.div`
+  display: flex;
+  `
+const AppSidebar = Styled.div`
+  width: 20rem;
+  background-color: #333333;
+  height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
+  color: #ffffff;
+  `
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StoreProvider>
+      <AppWrapper>
+        <AppSidebar>
+          <h1>Title</h1>
+          <WaypointList/>
+        </AppSidebar>
+        <LeafletMap/>
+      </AppWrapper>
+    </StoreProvider>
   );
 }
 
