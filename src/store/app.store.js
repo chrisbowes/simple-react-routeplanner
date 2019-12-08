@@ -13,6 +13,8 @@ function reducer(state, action) {
       return { markers: [...state.markers, action.payload]};
     case 'DELETE_MARKER':
       return {markers: [...state.markers.filter((marker) => marker !== action.payload)]};
+    case 'REORDER_MARKERS':
+        return {markers: action.payload}
     default:
       throw new Error();
   }

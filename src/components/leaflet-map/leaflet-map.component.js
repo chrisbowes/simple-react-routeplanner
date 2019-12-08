@@ -23,29 +23,21 @@ const LeafletMap = () => {
             })
           ]
         });
-        mapRef.current.on('click', addMarker);
+        mapRef.current.on('click', (e) => dispatch({ type: 'ADD_MARKER', payload: e.latlng }));
       }, []);
-    
+
     // add layer
     const layerRef = React.useRef(null);
     React.useEffect(() => {
         layerRef.current = L.layerGroup().addTo(mapRef.current);
     }, []);
-
     React.useEffect(() => {
-        if(state.markers.length) {
-        const polyline = L.polyline(state.markers, {color: 'red'}).addTo(mapRef.current);
+        layerRef.current.clearLayers();
+        if(state.markers.length) {            
+            state.markers.map((data) => L.marker(data).addTo(layerRef.current));
+            L.polyline(state.markers, {color: 'red'}).addTo(layerRef.current);
         }
-    },[ state.markers ]);
-
-    function addMarker(e){
-        // Add marker to map at click loca§§tion; add popup window
-        dispatch({
-            type: 'ADD_MARKER',
-            payload: e.latlng
-        })
-        const newMarker = new L.marker(e.latlng).addTo(mapRef.current);
-    }
+    }, [state.markers]);
 
     return (
         <MapWrapper id='map'></MapWrapper>
