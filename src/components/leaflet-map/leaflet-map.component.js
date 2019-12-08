@@ -24,7 +24,7 @@ const LeafletMap = () => {
           ]
         });
         mapRef.current.on('click', (e) => dispatch({ type: 'ADD_MARKER', payload: e.latlng }));
-      }, []);
+      }, [dispatch]);
 
     // add layer
     const layerRef = React.useRef(null);

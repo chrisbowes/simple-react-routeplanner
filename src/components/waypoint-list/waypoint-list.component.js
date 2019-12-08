@@ -1,12 +1,17 @@
 import React from 'react';
 import Waypoint from '../waypoint-list-item/waypoint-list-item.component';
 import { Store } from '../../store/app.store';
+import Styled from 'styled-components';
+
+const WaypointListUl = Styled.ul`
+    margin: 3rem 0 0 0;
+    padding: 0;
+    `;
 
 const WaypointList = () => {
     const { state, dispatch } = React.useContext(Store);
     const [draggedItem, setDraggedItem] = React.useState();
     const [draggedOverItem, setDraggedOverItem] = React.useState();
-    const [draggedIdx, setDraggedIdx] = React.useState();
     const [markersList, setMarkersList] = React.useState();
     React.useEffect(() => {
         setMarkersList(state.markers)
@@ -28,11 +33,10 @@ const WaypointList = () => {
          
       };
     const handleOnDragEnd = () => {
-        setDraggedIdx(null);
         dispatch({ type: 'REORDER_MARKERS', payload: markersList }) 
       };
     return (
-        <ul>
+        <WaypointListUl>
             { state.markers.map((marker, index) => {
                 return (
                     <Waypoint 
@@ -44,7 +48,7 @@ const WaypointList = () => {
                         handleOnDragOver={handleOnDragOver}/> 
                 )}
             )}
-        </ul>
+        </WaypointListUl>
     )
 }
 

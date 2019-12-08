@@ -6,21 +6,28 @@ import { StoreProvider } from './store/app.store';
 
 const AppWrapper = Styled.div`
   display: flex;
-  `
+  `;
 const AppSidebar = Styled.div`
   width: 20rem;
   background-color: #333333;
   height: 100vh;
-  padding: 2rem;
+  padding: 1rem;
   box-sizing: border-box;
   color: #ffffff;
-  `
+  `;
+const AppTitle = Styled.h1`
+  margin: 0;
+  padding: 0 0 1rem 0;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #fff;
+  `;
+
 function App() {
   return (
     <StoreProvider>
       <AppWrapper>
         <AppSidebar>
-          <h1>Title</h1>
+          <AppTitle>Route Builder</AppTitle>
           <WaypointList/>
         </AppSidebar>
         <LeafletMap/>
