@@ -19,13 +19,10 @@ const WaypointList = () => {
     };
     const handleOnDragOver = index => {
         setDraggedOverItem(state.markers[index]);  
-        // if the item is dragged over itself, ignore
         if (draggedItem === draggedOverItem) {
           return;
         }   
-        // filter out the currently dragged item
         let items = state.markers.filter(item => item !== draggedItem);    
-        // add the dragged item after the dragged over item
         items.splice(index, 0, draggedItem); 
         setMarkersList(items);
          
