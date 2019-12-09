@@ -2,6 +2,7 @@ import React from 'react';
 import L from 'leaflet';
 import Styled from 'styled-components';
 import { Store } from '../../store/app.store';
+import togpx from 'togpx';
 
 
 const MapWrapper = Styled.div`
@@ -10,6 +11,7 @@ const MapWrapper = Styled.div`
     `
 const LeafletMap = () => {
     const mapRef = React.useRef(null);
+    const layerRef = React.useRef(null);
     const { state, dispatch } = React.useContext(Store);
     
     React.useEffect(() => {
@@ -23,19 +25,25 @@ const LeafletMap = () => {
             })
           ]
         });
-        mapRef.current.on('click', (e) => dispatch({ type: 'ADD_MARKER', payload: e.latlng }));
+        mapRef.current.on('click', (e) => {
+            dispatch({ type: 'ADD_MARKER', payload: L.marker(e.latlng).toGeoJSON() })
+        });
       }, [dispatch]);
 
-    // add layer
-    const layerRef = React.useRef(null);
     React.useEffect(() => {
         layerRef.current = L.layerGroup().addTo(mapRef.current);
     }, []);
+    
     React.useEffect(() => {
         layerRef.current.clearLayers();
-        if(state.markers.length) {            
-            state.markers.map((data) => L.marker(data).addTo(layerRef.current));
-            L.polyline(state.markers, {color: 'red'}).addTo(layerRef.current);
+        if(state.markers.length) { 
+            const polyLineCoords = [];           
+            state.markers.map((marker) => {
+                const latlng = {lat:marker.geometry.coordinates[0], lng:marker.geometry.coordinates[1]};
+                polyLineCoords.push(latlng); 
+                L.marker({lat:marker.geometry.coordinates[1], lng:marker.geometry.coordinates[0]}).addTo(layerRef.current)
+            });   
+            L.polyline(polyLineCoords, {color: 'red'}).addTo(layerRef.current);
         }
     }, [state.markers]);
 

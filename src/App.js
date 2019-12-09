@@ -2,6 +2,7 @@ import React from 'react';
 import Styled from 'styled-components';
 import WaypointList from './components/waypoint-list/waypoint-list.component';
 import LeafletMap from './components/leaflet-map/leaflet-map.component';
+import DownloadRoute from './components/download-route/download-route.component';
 import { StoreProvider } from './store/app.store';
 
 const AppWrapper = Styled.div`
@@ -29,6 +30,7 @@ function App() {
         <AppSidebar>
           <AppTitle>Route Builder</AppTitle>
           <WaypointList/>
+          <DownloadRoute/>
         </AppSidebar>
         <LeafletMap/>
       </AppWrapper>
