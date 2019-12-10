@@ -2,7 +2,6 @@ import React from 'react';
 import L from 'leaflet';
 import Styled from 'styled-components';
 import { Store } from '../../store/app.store';
-import togpx from 'togpx';
 
 
 const MapWrapper = Styled.div`
@@ -36,15 +35,18 @@ const LeafletMap = () => {
     
     React.useEffect(() => {
         layerRef.current.clearLayers();
+        let polylineGeoJson = [];  
         if(state.markers.length) { 
             const polyLineCoords = [];           
             state.markers.map((marker) => {
-                const latlng = {lat:marker.geometry.coordinates[0], lng:marker.geometry.coordinates[1]};
+                const latlng = {lat:marker.geometry.coordinates[1], lng:marker.geometry.coordinates[0]};
                 polyLineCoords.push(latlng); 
-                L.marker({lat:marker.geometry.coordinates[1], lng:marker.geometry.coordinates[0]}).addTo(layerRef.current)
+                L.marker(latlng).addTo(layerRef.current)
             });   
             L.polyline(polyLineCoords, {color: 'red'}).addTo(layerRef.current);
+            polylineGeoJson = [...polylineGeoJson, L.polyline(polyLineCoords, {color: 'red'}).toGeoJSON()]
         }
+        dispatch({type:'UPDATE_POLYLINES', payload: polylineGeoJson});
     }, [state.markers]);
 
     return (

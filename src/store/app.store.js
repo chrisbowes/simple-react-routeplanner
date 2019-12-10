@@ -4,7 +4,7 @@ export const Store = React.createContext();
 
 const initialState = {
     markers: [],
-    geoJSON: null
+    polylines: []
 };
 
 function reducer(state, action) {
@@ -15,8 +15,8 @@ function reducer(state, action) {
       return {...state, markers: [...state.markers.filter((marker) => marker !== action.payload)]};
     case 'REORDER_MARKERS':
         return {...state, markers: action.payload}
-    case 'UPDATE_GEO_JSON':
-        return {...state, geoJSON: action.payload}
+    case 'UPDATE_POLYLINES':
+        return {...state, polylines: action.payload}
     default:
       throw new Error();
   }
