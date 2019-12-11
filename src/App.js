@@ -15,6 +15,9 @@ const AppSidebar = Styled.div`
   padding: 1rem;
   box-sizing: border-box;
   color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   `;
 const AppTitle = Styled.h1`
   margin: 0;
@@ -28,8 +31,10 @@ function App() {
     <StoreProvider>
       <AppWrapper>
         <AppSidebar>
-          <AppTitle>Route Builder</AppTitle>
-          <WaypointList/>
+          <div>
+            <AppTitle>Route Builder</AppTitle>
+            <WaypointList/>
+          </div>
           <DownloadRoute/>
         </AppSidebar>
         <LeafletMap/>
