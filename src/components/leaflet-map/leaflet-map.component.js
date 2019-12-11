@@ -1,10 +1,10 @@
 import React from 'react';
 import L from 'leaflet';
-import Styled from 'styled-components';
+import styled from 'styled-components';
 import { Store } from '../../store/app.store';
 
 
-const MapWrapper = Styled.div`
+const MapWrapper = styled.div`
     width: 100%;
     height: 100vh;
     `

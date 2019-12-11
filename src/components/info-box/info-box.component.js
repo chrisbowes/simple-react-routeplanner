@@ -1,7 +1,7 @@
 import React from 'react';
-import Styled from 'styled-components';
+import styled from 'styled-components';
 
-const InfoBoxEl = Styled.div`
+const InfoBoxEl = styled.div`
     border-radius: 0.3rem;
     box-sizing: border-box;
     border: 1px solid #e1e1e1;

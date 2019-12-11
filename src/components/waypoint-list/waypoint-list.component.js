@@ -1,13 +1,13 @@
 import React from 'react';
 import Waypoint from '../waypoint-list-item/waypoint-list-item.component';
 import { Store } from '../../store/app.store';
-import Styled from 'styled-components';
+import styled from 'styled-components';
 import InfoBox from '../info-box/info-box.component';
 
-const WaypointListUl = Styled.ul`
-    margin: 3rem 0 0 0;
+const WaypointListUl = styled.ul`
+    margin: 0;
     padding: 0;
-    `;
+`;
 
 const WaypointList = () => {
     const { state, dispatch } = React.useContext(Store);
@@ -37,9 +37,9 @@ const WaypointList = () => {
         dispatch({ type: 'REORDER_MARKERS', payload: markersList }) 
       };
     return (
-        <WaypointListUl>
+        <>
             { state.markers.length ?
-                <>
+            <WaypointListUl>
                 { state.markers.map((marker, index) => {
                     return (
                         <Waypoint 
@@ -51,13 +51,13 @@ const WaypointList = () => {
                             handleOnDragOver={handleOnDragOver}/> 
                     )}
                 )}
-                </>
-                :
-                <InfoBox>
-                    Add markers to the map to build a sortable list. Delete and rearrange as desired. Then use the download option below to export your route in GPX format.
-                </InfoBox>
+            </WaypointListUl>
+            :
+            <InfoBox>
+                Add markers to the map to build a sortable list. Delete and rearrange as desired. Then use the download option below to export your route in GPX format.
+            </InfoBox>
             }
-        </WaypointListUl>
+        </>
     )
 }
 
