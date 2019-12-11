@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/routeplanner/static/css/main.34de6062.chunk.css",
+    "main.js": "/routeplanner/static/js/main.38535348.chunk.js",
+    "main.js.map": "/routeplanner/static/js/main.38535348.chunk.js.map",
+    "runtime-main.js": "/routeplanner/static/js/runtime-main.7909a660.js",
+    "runtime-main.js.map": "/routeplanner/static/js/runtime-main.7909a660.js.map",
+    "static/js/2.f45a8009.chunk.js": "/routeplanner/static/js/2.f45a8009.chunk.js",
+    "static/js/2.f45a8009.chunk.js.map": "/routeplanner/static/js/2.f45a8009.chunk.js.map",
+    "index.html": "/routeplanner/index.html",
+    "precache-manifest.ecebc4f2da6d177647680d20e9f32a7a.js": "/routeplanner/precache-manifest.ecebc4f2da6d177647680d20e9f32a7a.js",
+    "service-worker.js": "/routeplanner/service-worker.js",
+    "static/css/main.34de6062.chunk.css.map": "/routeplanner/static/css/main.34de6062.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7909a660.js",
+    "static/js/2.f45a8009.chunk.js",
+    "static/css/main.34de6062.chunk.css",
+    "static/js/main.38535348.chunk.js"
+  ]
+}
