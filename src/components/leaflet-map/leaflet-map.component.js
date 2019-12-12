@@ -3,7 +3,6 @@ import L from 'leaflet';
 import styled from 'styled-components';
 import { Store } from '../../store/app.store';
 
-
 const MapWrapper = styled.div`
     width: 100%;
     height: 100vh;
@@ -36,18 +35,36 @@ const LeafletMap = () => {
     React.useEffect(() => {
         layerRef.current.clearLayers();
         let polylineGeoJson = [];
+        L.CustomIcon = L.Icon.extend({
+            options: {
+                number: '',
+                iconUrl: '',
+                iconSize: [30, 30],
+                iconAnchor: [15, 15],
+                className: 'custom-icon'
+            },        
+            createIcon: function () {
+                const div = document.createElement('div');
+                const label = document.createElement('div');
+                label.setAttribute ("class", "number");
+                label.innerHTML = this.options['number'] || '';
+                div.appendChild (label);
+                this._setIconStyles(div, 'icon');
+                return div;
+            },
+        });
         if (state.markers.length) {
             const polyLineCoords = [];
-            state.markers.map((marker) => {
+            state.markers.map((marker, index) => {
                 const latlng = { lat: marker.geometry.coordinates[1], lng: marker.geometry.coordinates[0] };
                 polyLineCoords.push(latlng);
-                L.marker(latlng).addTo(layerRef.current)
+                return L.marker(latlng, { icon: new L.CustomIcon({number: index + 1})}).addTo(layerRef.current)
             });
-            L.polyline(polyLineCoords, { color: 'red' }).addTo(layerRef.current);
-            polylineGeoJson = [...polylineGeoJson, L.polyline(polyLineCoords, { color: 'red' }).toGeoJSON()]
+            const newLine = L.polyline(polyLineCoords, { color: '#0f86e8', weight: 5 }).addTo(layerRef.current);
+            polylineGeoJson = [...polylineGeoJson, newLine.toGeoJSON()]
         }
         dispatch({ type: 'UPDATE_POLYLINES', payload: polylineGeoJson });
-    }, [state.markers]);
+    }, [dispatch, state.markers]);
 
     return (
         <MapWrapper id='map'></MapWrapper>

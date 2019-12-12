@@ -16,7 +16,7 @@ const WaypointList = () => {
     const [markersList, setMarkersList] = React.useState();
     React.useEffect(() => {
         setMarkersList(state.markers)
-    },[])
+    },[state.markers])
     const handleOnDragStart = (e, index) => {
         setDraggedItem(state.markers[index]);
         e.dataTransfer.effectAllowed = "move";

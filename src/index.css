@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.custom-icon {
+  background-color: #383838;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  align-items: center;
+}
