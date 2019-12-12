@@ -17,7 +17,7 @@ The app does not rely on any external React Components with the exeption of the 
 
 ## Available Scripts
 
-### `npm install
+### `npm install`
 
 Installs dependencies
 
