@@ -1,19 +1,18 @@
 import React from 'react';
-import Styled from 'styled-components';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt, faBars } from '@fortawesome/free-solid-svg-icons'
+import styled from 'styled-components';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTrashAlt, faBars, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import WaypointList from './components/waypoint-list/waypoint-list.component';
-import LeafletMap from './components/leaflet-map/leaflet-map.component';
+import LeafletMapLoader from './components/leaflet-map-loader/leaflet-map-loader.component';
 import DownloadRoute from './components/download-route/download-route.component';
 import { StoreProvider } from './store/app.store';
 
-library.add(faTrashAlt, faBars);
+library.add(faTrashAlt, faBars, faCircleNotch);
 
-const AppWrapper = Styled.div`
+const AppWrapper = styled.div`
   display: flex;
-  `;
-const AppSidebar = Styled.div`
+`;
+const AppSidebar = styled.div`
   width: 20rem;
   background-color: #383838;
   height: 100vh;
@@ -23,27 +22,24 @@ const AppSidebar = Styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  `;
-const AppTitle = Styled.h1`
+`;
+const AppTitle = styled.h1`
   margin: 0 0 3rem 0;
   padding: 0 0 1rem 0;
   font-size: 1.2rem;
   border-bottom: 1px solid #fff;
-  `;
+`;
 
 function App() {
   return (
     <StoreProvider>
       <AppWrapper>
-      <FontAwesomeIcon icon="fa-trash-alt" />
         <AppSidebar>
-          <div>
             <AppTitle>Route Builder</AppTitle>
-            <WaypointList/>
-          </div>
-          <DownloadRoute/>
+            <WaypointList />
+            <DownloadRoute />
         </AppSidebar>
-        <LeafletMap/>
+        <LeafletMapLoader />
       </AppWrapper>
     </StoreProvider>
   );

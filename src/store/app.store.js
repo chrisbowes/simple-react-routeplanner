@@ -4,7 +4,8 @@ export const Store = React.createContext();
 
 const initialState = {
     markers: [],
-    polylines: []
+    polylines: [],
+    userLocation: null
 };
 
 function reducer(state, action) {
@@ -17,6 +18,8 @@ function reducer(state, action) {
         return {...state, markers: action.payload}
     case 'UPDATE_POLYLINES':
         return {...state, polylines: action.payload}
+    case 'SET_USER_LOCATION':
+        return {...state, userLocation: action.payload}
     default:
       throw new Error();
   }

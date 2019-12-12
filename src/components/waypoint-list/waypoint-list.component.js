@@ -7,6 +7,8 @@ import InfoBox from '../info-box/info-box.component';
 const WaypointListUl = styled.ul`
     margin: 0;
     padding: 0;
+    flex-grow: 1;
+    overflow: scroll;
 `;
 
 const WaypointList = () => {
